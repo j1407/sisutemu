@@ -1,0 +1,129 @@
+﻿#table{
+    border-collapse: collapse;
+}
+#table td {
+    border: 2px #2b2b2b solid;
+    width : 60px;
+    height: 60px;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 20px;
+}
+#button-position{
+    position: absolute;
+    padding-top: 10px;
+    left: 120px;
+    background-color: #42c0fa;
+}
+#start-button{
+    position: absolute;
+    background-color: #e09999;
+    width: 400px;
+    height: 100px;
+    font-size: 40px;
+}
+#start-button:hover{
+    background-color: rgba(238, 163, 163, 0.5);
+}
+#hint{
+    position: absolute;
+    top: 50px;
+    left: 700px;
+}
+#hint-block{
+    border: 5px solid orange;
+    border-radius: 40px 40px 40px 40px;
+    width: 200px;
+    height: 100px;
+    font-size: 30px;
+}
+#open-block{
+    border: 5px solid green;
+    border-radius: 40px 40px 40px 40px;
+    width: 200px;
+    height: 100px;
+    display:block;
+    margin-top: 100px;
+    font-size: 30px;
+}
+#answer-block{
+    border: 5px solid blue;
+    border-radius: 40px 40px 40px 40px;
+    width: 200px;
+    height: 100px;
+    display:block;
+    margin-top: 100px;
+    font-size: 30px;
+}
+#hint p{
+    color: black;
+    width: 200px;
+    height: 100px;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+}
+#coin{
+    position: absolute;
+    top: 20px;
+    left: 950px;
+    height: 450px;
+    width: 450px;
+}
+#coin table{
+    height: 300px;
+    width: 450px;
+    font-size: 24px;
+}
+#coin p{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+.title-p{
+    font-size: 36px;
+    color: #f0a690;
+}
+.trans-p{
+    font-size: 18px;
+}
+#numberpeople{
+    position: absolute;
+    border-style: groove;
+    text-align: center;
+    left: 450px;
+    height: 50px;
+    width: 100px;
+    font-size: 25px;
+    color: black;
+}
+#numberpeople:hover{
+    background-color: yellowgreen;
+}
+#coin td{
+    text-align: right;
+}
+#ran{
+    height: 100px;
+    background-color: green;
+}
+#ran-button{
+    height: 50px;
+    width: 350px;
+}
+#setumei{
+    position: absolute;
+    top: 480px;
+    left: 950px;
+    height: 300px;
+    width: 450px;
+}
+#setumei table{
+    height: 200px;
+    width: 450px;
+    font-size: 20px;
+}
+img{
+    width: 35px;
+    height: 35px;
+}

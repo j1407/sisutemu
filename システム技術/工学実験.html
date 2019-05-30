@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html lang = "ja">
+<head>
+    <title>探索すごろく</title>
+    <meta charset="utf-8">
+    <meta name = "author" content = "s1904">
+    <meta name="description" content="takara sagashi">
+    <script type = "text/javascript" src = "./jquery-3.4.0.min.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="./color.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="./program.js" charset="UTF-8"></script>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body onMouseDown="return false;" onSelectStart="return false" bgcolor="#eeffee">
+    <div id = "table">
+        <table></table>
+    </div>
+    <div id = "hint">
+        <div id = "hint-block"><p></p></div> <!-- 答えに関するヒントが表示 -->
+        <div id = "open-block"><p></p></div> <!-- それまでに開けた枚数が表示-->
+        <div id = "answer-block"><p></p></div> <!-- 答えの数字が表示-->
+    </div>
+    <div id = "button-position">
+        <button id = "start-button">ゲームをはじめる</button>
+        <div id = "numberpeople" onmousemove="getID(this)" onmouseout="getIDout(this)">3</div>
+        <!--<form id="my-form"><input type="number" name="n-people" id = "numberpeople" min="1" max="4" value="1"></form>-->
+    </div>
+    <div id = "coin">
+        <table border = "1">
+                <tr><td>人</td><td>コインの枚数</td><td>現在の数字</td><tr id = "coin1"><td><img border="0" src="./image/peo1.png"></td><td id = "cointd1"></td><td id = "point1"></td></tr><tr id = "coin2"><td><img border="0" src="./image/peo2.png"></td><td id = "cointd2"></td><td id = "point2"></td></tr>
+                <tr id = "coin3"><td><img border="0" src="./image/peo3.png"></td><td id = "cointd3"></td><td id = "point3"></td></tr><tr id = "coin4"><td><img border="0" src="./image/peo4.png"></td><td id = "cointd4"></td><td id = "point4"></td></tr>
+        </table>
+        <div id = "ran"></div>
+        <button id = "ran-button">さいころをふる</button>
+    </div>
+    <div id = "setumei">
+        <table border = "1">
+            <tr><td>アイテム</td><td>効果</td>
+            <tr><td><img src="./image/coin.png"></td><td>コインがランダムな枚数ゲットできる</td></tr>
+            <tr><td><img src="./image/bomb.png"></td><td>コインをランダムな枚数失う</td></tr>
+            <tr><td><img src="./image/gazer.png"></td><td>敵とのたたかいをする</td></tr>
+            <tr><td><img src="./image/hornet.png"></td><td>ほかの人のコインをランダムにうばう</td></tr>
+            <tr><td><img src="./image/next.png"></td><td>もう一度さいころをふる</td></tr>
+    </table>     
+    </div>
+    <!--
+    <div id = "translation">
+        <p class = "title-p">ゲームのせつめい</p>
+        <p class = "trans-p">ゲーム1</p>
+        <p class = "trans-p">数字は適当に散らばっています</p>
+        <p class = "trans-p">四方向に当たりがあるときは、クリックしたあとに色が点滅します</p>
+        <p class = "trans-p"><br></p>
+        <p class = "trans-p">ゲーム2</p>
+        <p class = "trans-p">数字が大きさの順に並んでいます</p>
+        <p class = "trans-p">並んでいるむきは、横か縦になっています</p>
+        <p class = "trans-p"><br></p>
+        <p class = "trans-p">ゲーム3</p>
+        <p class = "trans-p">数字が法則によって色分けされています</p>
+        <p class = "trans-p">10の位の数で色の濃さ、薄さの順に並べています</p>
+        <p class = "trans-p">1の位の数で色が決まっています</p>
+        <p class = "trans-p">--------------------------</p>
+        <p class = "trans-p">ルール</p>
+        <p class = "trans-p"><font color="orange">オレンジの枠の中にはゲーム番号</font></p>
+        <p class = "trans-p"><font color="green">緑色の枠の中には開けたかず</font></p>
+        <p class = "trans-p"><font color="blue">青色の枠の中には正解のかず</font></p>
+        <p class = "trans-p">が表示されています</p>
+        <p class = "trans-p"><br></p>
+        <p class = "trans-p">3回ゲームをして、黄色の枠の数字が少なくなるようにクリアしましょう</p>
+    </div>-->
+</body>
+</html>
