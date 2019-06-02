@@ -10,7 +10,11 @@
     <script type="text/javascript" src="./program.js" charset="UTF-8"></script>
     <link rel="stylesheet" href="./style.css">
 </head>
-<body onMouseDown="return false;" onSelectStart="return false" bgcolor="#eeffee">
+<body onMouseDown="return false;" onSelectStart="return false">
+    <div id = "description">
+        <img src="" id="des">
+        <button id = "des-button">説明はわかった</button>
+    </div>
     <div id = "table">
         <table></table>
     </div>
@@ -24,13 +28,18 @@
         <div id = "numberpeople" onmousemove="getID(this)" onmouseout="getIDout(this)">3</div>
         <!--<form id="my-form"><input type="number" name="n-people" id = "numberpeople" min="1" max="4" value="1"></form>-->
     </div>
+    <button id = "des-look">説明を見る</button>
+    <div id = "desdes">
+        <p>ゲームを始める前に参加人数を指定します。「ゲームをはじめる」の横の四角にマウスのカーソルをあてて数字を入力してください</p>
+    </div>
     <div id = "coin">
         <table border = "1">
                 <tr><td>人</td><td>コインの枚数</td><td>現在の数字</td><tr id = "coin1"><td><img border="0" src="./image/peo1.png"></td><td id = "cointd1"></td><td id = "point1"></td></tr><tr id = "coin2"><td><img border="0" src="./image/peo2.png"></td><td id = "cointd2"></td><td id = "point2"></td></tr>
                 <tr id = "coin3"><td><img border="0" src="./image/peo3.png"></td><td id = "cointd3"></td><td id = "point3"></td></tr><tr id = "coin4"><td><img border="0" src="./image/peo4.png"></td><td id = "cointd4"></td><td id = "point4"></td></tr>
         </table>
         <div id = "ran"></div>
-        <button id = "ran-button">さいころをふる</button>
+        <div id = "aaa"><img src="image/saikoro/a4_4.png" id="sai"></div>
+        <button type="button" id="ran-button">サイコロをふる</button>
     </div>
     <div id = "setumei">
         <table border = "1">
@@ -42,29 +51,5 @@
             <tr><td><img src="./image/next.png"></td><td>もう一度さいころをふる</td></tr>
     </table>     
     </div>
-    <!--
-    <div id = "translation">
-        <p class = "title-p">ゲームのせつめい</p>
-        <p class = "trans-p">ゲーム1</p>
-        <p class = "trans-p">数字は適当に散らばっています</p>
-        <p class = "trans-p">四方向に当たりがあるときは、クリックしたあとに色が点滅します</p>
-        <p class = "trans-p"><br></p>
-        <p class = "trans-p">ゲーム2</p>
-        <p class = "trans-p">数字が大きさの順に並んでいます</p>
-        <p class = "trans-p">並んでいるむきは、横か縦になっています</p>
-        <p class = "trans-p"><br></p>
-        <p class = "trans-p">ゲーム3</p>
-        <p class = "trans-p">数字が法則によって色分けされています</p>
-        <p class = "trans-p">10の位の数で色の濃さ、薄さの順に並べています</p>
-        <p class = "trans-p">1の位の数で色が決まっています</p>
-        <p class = "trans-p">--------------------------</p>
-        <p class = "trans-p">ルール</p>
-        <p class = "trans-p"><font color="orange">オレンジの枠の中にはゲーム番号</font></p>
-        <p class = "trans-p"><font color="green">緑色の枠の中には開けたかず</font></p>
-        <p class = "trans-p"><font color="blue">青色の枠の中には正解のかず</font></p>
-        <p class = "trans-p">が表示されています</p>
-        <p class = "trans-p"><br></p>
-        <p class = "trans-p">3回ゲームをして、黄色の枠の数字が少なくなるようにクリアしましょう</p>
-    </div>-->
 </body>
 </html>

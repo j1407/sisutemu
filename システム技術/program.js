@@ -20,6 +20,13 @@ var audio3 = new Audio(audio[3]);
 var audio4 = new Audio(audio[4]);
 var audio5 = new Audio(audio[5]);
 var audio_background = new Audio("./audio/wa_001.mp3");
+
+var sainome;
+var j_sai = 1;
+var i_sai = 4;
+var s_sai = 0;
+var jAry = [4, 1, 3, 1, 3, 2];
+
 function init(){
     math = 10;
     count = 0;
@@ -27,7 +34,6 @@ function init(){
     reset = false;
     people_position = [[0,0],[9,9],[0,9],[9,0]];
     now = 0;coma_flag = 0;
-    point = [0,0,0,0];
     $('#numberpeople').css('background-color', 'transparent');
     for(var i = 1;i < 4;i++){
         $('#coin' + (i + 1) + '').css('background-color', 'transparent'); 
@@ -40,6 +46,12 @@ function init(){
     $('#hint-block p').text('ゲーム番号');
     $('#open-block p').text('正解に近い');
     $('#answer-block p').text('正解のかず');
+}
+function init_point(){
+    point = [0,0,0,0];
+    for(var i = 1;i <= 4;i++){
+        $('#cointd' + i + '').text(point[i-1]);
+    }
 }
 function make_table(height, width){
     var td;
@@ -176,6 +188,34 @@ function nonDuplicate(n){
     return b;
 }
 
+//サイコロが転がる動き
+function korogasu(n){
+    var saiImg = setInterval(function(){
+      if(s_sai <= 16){
+        if(i_sai < 4) {
+          imgURL = 'image/saikoro/' + n + j_sai + '_' + i_sai + '.png';
+          $('#sai').attr('src',imgURL);
+          i_sai++;
+        } else {
+          imgURL = 'image/saikoro/' + n + j_sai + '_' + i_sai + '.png';
+          $('#sai').attr('src',imgURL);
+          i_sai = 1;
+          if(j_sai < 4) {
+            j_sai++;
+          } else {
+            j_sai = 1;
+          }
+        }
+        s_sai ++;
+      } else {
+        clearInterval(saiImg);
+        $('#sai').removeClass();
+        s_sai = 0;
+        i_sai = 4;
+      }
+    }, 70);
+  }
+
 function make_color(){
     var td = $('#table td'), td_p, s;
     var p = [];
@@ -227,19 +267,46 @@ function game_start(){
     for(var i = 1;i < 5;i++){
         $('#point' + i + '').text("-");
     }
-    
+    hyouji();
 }
 
-function people_haiti(){
+function people_haiti(){ // 0なら移動中、1なら移動終わり
     input = document.getElementById("numberpeople").innerHTML;
+//    for(var i = 0;i < input;i++){
+//        $('#td' + (people_position[i][0]*10 + people_position[i][1] + 1) + '').html('<img src="./image/peo' + (i + 1) +'.png">');
+//    }
+//    $('#td' + (people_position[now][0]*10 + people_position[now][1] + 1) + '').html('<img src="./image/peo' + (now + 1) +'.png">'); // 重なったときに今動かしてるのが上にくる
     for(var i = 0;i < input;i++){
-        $('#td' + (people_position[i][0]*10 + people_position[i][1] + 1) + '').html('<img src="./image/peo' + (i + 1) +'.png">');
+        if($('#td' + (people_position[i][0]*10 + people_position[i][1] + 1) + '').css('color') == 'rgb(0, 0, 0)'){
+            $('#td' + (people_position[i][0]*10 + people_position[i][1] + 1) + '').html(  
+                '<span style="position: absolute;width:40px;height:40px;top:'+(people_position[i][0]*62+20)+'px; left:'+ (people_position[i][1]*62+20)+'px;"><img src="./image/peo' + (i+1) +'.png"></img></span>'
+                +'<span style="position: absolute;top:'+ (people_position[i][0]*62+30)+'px; left:'+ (people_position[i][1]*62+20)+'px;">'+fig_haiti[people_position[i][0]*10 + people_position[i][1]]+'</span>'
+            );
+        }
+        else{
+            $('#td' + (people_position[i][0]*10 + people_position[i][1] + 1) + '').html(
+                '<span style="position: absolute;top:'+ (people_position[i][0]*62+30)+'px; left:'+ (people_position[i][1]*62+20)+'px;">'+fig_haiti[people_position[i][0]*10 + people_position[i][1]]+'</span>'
+                +'<span style="position: absolute;width:40px;height:40px;top:'+(people_position[i][0]*62+20)+'px; left:'+ (people_position[i][1]*62+20)+'px;"><img src="./image/peo' + (i+1) +'.png"></img></span>'
+            );
+        }
     }
-    $('#td' + (people_position[now][0]*10 + people_position[now][1] + 1) + '').html('<img src="./image/peo' + (now + 1) +'.png">'); // 重なったときに今動かしてるのが上にくる
+    // 重なったときに今動かしているのが上にくる
+    if($('#td' + (people_position[now][0]*10 + people_position[now][1] + 1) + '').css('color') == 'rgb(0, 0, 0)'){
+        $('#td' + (people_position[now][0]*10 + people_position[now][1] + 1) + '').html(  
+            '<span style="position: absolute;width:40px;height:40px;top:'+(people_position[now][0]*62+20)+'px; left:'+ (people_position[now][1]*62+20)+'px;"><img src="./image/peo' + (now+1) +'.png"></img></span>'
+            +'<span style="position: absolute;top:'+ (people_position[now][0]*62+30)+'px; left:'+ (people_position[now][1]*62+20)+'px;">'+fig_haiti[people_position[now][0]*10 + people_position[now][1]]+'</span>'
+        );
+    }
+    else{
+        $('#td' + (people_position[now][0]*10 + people_position[now][1] + 1) + '').html(
+            '<span style="position: absolute;top:'+ (people_position[now][0]*62+30)+'px; left:'+ (people_position[now][1]*62+20)+'px;">'+fig_haiti[people_position[now][0]*10 + people_position[now][1]]+'</span>'
+            +'<span style="position: absolute;width:40px;height:40px;top:'+(people_position[now][0]*62+20)+'px; left:'+ (people_position[now][1]*62+20)+'px;"><img src="./image/peo' + (now+1) +'.png"></img></span>'
+        );
+    }
+    //
     for(var i = 0;i < math*math;i++){
         $('#td' + (i+1) + '').find('img').css('width','40px');
         $('#td' + (i+1) + '').find('img').css('height','40px');
-        //$('#td' + (i+1) + '').find('img').css('opacity','0.5');
     }
 }
 
@@ -425,6 +492,7 @@ function tenmetsu(){
 window.onload = function(){
     init();
     audio_background.play();
+    document.getElementById("description").style.visibility="hidden";
     make_table(math, math);
 }
 function getID(element){
@@ -432,6 +500,11 @@ function getID(element){
 }
 function getIDout(element){
     click_id = "";
+}
+function hyouji(){
+    link = 'image/description' + game;
+    document.getElementById("description").style.visibility="visible";
+    $('#des').attr('src',link + ".png");
 }
 $(function(){
     $(document.body).keydown(function (e) {
@@ -481,9 +554,10 @@ $(function(){
                 if(now >= input){now = 0;}
                 document.getElementById('ran').innerHTML = str + '' + (now+1) + 'の番です';
                 // ゴールマスなら
-                if(reset){
+                if(reset){ // たぶんこのif文は不要だと思うけど、動作未確認
                     tag_td = 'td' + (y*10+x+1) + '';
                     $('#'+tag_td).css('color','black');
+                    people_haiti();
                     if(fig_haiti[y*10 + x] == answer){
                         people_haiti();
                         alert("当たり");
@@ -494,6 +568,7 @@ $(function(){
                         if(game == 4){
                             alert("ゲームクリア");
                             $('#start-button').text("ゲームをはじめる");
+                            document.getElementById("desdes").style.visibility="visible";
                             init();
                             restart(math, math);
                         }
@@ -506,26 +581,46 @@ $(function(){
             }
         }
     });
+    $("#des-button").click(function(e){
+        document.getElementById("description").style.visibility="hidden";
+    });
+    $("#des-look").click(function(e){
+        if(reset){
+            hyouji();
+        }
+    });
     $("#start-button").click(function(e){
         audio_background.play();
         if(!reset){
             reset = true;
             $('#start-button').text("ゲームをやめる");
+            document.getElementById("desdes").style.visibility="hidden";
             game_start(); // 色とか配置して、ここでゲームの人数を確認
             for(var i = 4;i > document.getElementById("numberpeople").innerHTML-1;i--){
                 $('#coin' + (i + 1) + '').css('background-color', '#666');
             }
             people_haiti(); // キャラクターや人を配置する
+            init_point();
         }
         else{
             $('#start-button').text("ゲームをはじめる");
+            document.getElementById("desdes").style.visibility="visible";
             init();
             restart(math, math);
         }
     });
     $("#ran-button").click(function(e){
+        //https://magnets.jp/web_design/9703/#1
         if(reset && coma_flag == 0){
-            random_f = Math.floor( Math.random() * 6 + 1); // 1から6の乱数
+            $('#sai').addClass('bound');
+            sainome = Math.floor( Math.random() * 6 + 1); // 1から6の乱数
+            j_sai = jAry[sainome-1];
+            if(sainome == 3 || sainome == 4 || sainome == 6){  //出目が3.4.6の時
+                korogasu('b');  //引数に'b'を渡しkorogasu()を実行
+            } else {  //出目が1,2,5の時
+                korogasu('a');  //数に'a'を渡しkorogasu()を実行
+            }
+            random_f = sainome;
             // nowの数字の人が進める
             document.getElementById('ran').innerHTML = '' + (now+1) + 'の人が' + random_f + 'マス進める';
             coma_flag = 1;
